@@ -86,16 +86,18 @@ sub new_domain {
 
 =item $mol->domains($n1, ...)
 
-Returns the domains with the given indices, or all by default.
+Returns the domains with the given indices, or all by default. NOTE:
+the indices start from one (1), not from zero.
 
 =cut
 
 sub domains {
     my $self = shift;
     if (@_) {
-        wantarray ? @{$self->{domains}}[@_] : $self->{domains}[$_[-1]];
+        my @doms = map {$_ - 1} @_;
+        wantarray ? @{$self->{domains}}[@doms] : $self->{domains}[$doms[-1]];
     } else {
-        @{$self->{domains}};
+        @{$self->{domains}}; # return all
     }
 }
 
