@@ -53,6 +53,24 @@ sub new_domain {
     $self->add_domain(Chemistry::Domain->new(@_));
 }
 
+
+=item $mol->domains($n1, ...)
+
+Returns the domains with the given indices, or all by default.
+
+=cut
+
+sub domains {
+    my $self = shift;
+    if (@_) {
+        wantarray ? @{$self->{domains}}[@_] : $self->{domains}[$_[-1]];
+    } else {
+        @{$self->{domains}};
+    }
+}
+
+
+
 1;
 
 
