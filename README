@@ -1,16 +1,15 @@
-Chemistry/MacroMol version 0.01
+Chemistry/MacroMol version 0.05
 ===============================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+For the purposes of this module, a macromolecule is just a molecule that 
+consists of several "domains". For example, a protein consists of aminoacid
+residues, or a nucleic acid consists of bases. Therefore Chemistry::MacroMol 
+is derived from Chemistry::Mol, with additional methods to handle the domains.
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+The way things are currently structured, an atom in a macromolecule "belong"
+both to the MacroMol object and to a Domain object. This way you can get all the
+atoms in $protein via $protein->atoms, or to the atoms in residue 123 via
+$protein->domain(123)->atoms.
 
 INSTALLATION
 
@@ -25,11 +24,9 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  blah blah blah
+  Chemistry::Mol
 
 COPYRIGHT AND LICENCE
-
-Put the correct copyright and licence information here.
 
 Copyright (C) 2003 Ivan Tubert
 

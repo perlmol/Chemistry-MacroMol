@@ -4,29 +4,46 @@ use strict;
 use warnings;
 use base qw(Chemistry::Mol Exporter);
 
-our $VERSION = '0.01';
+our $VERSION = '0.05';
+our @EXPORT_OK = ();
 
 =head1 NAME
 
-Chemistry::MacroMol - Perl extension for blah blah blah
+Chemistry::MacroMol - Perl module for macromolecules
 
 =head1 SYNOPSIS
 
-  use Chemistry::MacroMol;
-  blah blah blah
+    use Chemistry::MacroMol;
+
+    my $mol = Chemistry::MacroMol->new(name => 'my molecule');
+    $mol->add_domain($domain); # see Chemistry::Domain for details
+    @domains = $mol->domains;
 
 =head1 DESCRIPTION
 
-Stub documentation for Chemistry::MacroMol, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+For the purposes of this module, a macromolecule is just a molecule that 
+consists of several "domains". For example, a protein consists of aminoacid
+residues, or a nucleic acid consists of bases. Therefore Chemistry::MacroMol 
+is derived from Chemistry::Mol, with additional methods to handle the domains.
 
-Blah blah blah.
+The way things are currently structured, an atom in a macromolecule "belong"
+both to the MacroMol object and to a Domain object. This way you can get all the
+atoms in $protein via $protein->atoms, or to the atoms in residue 123 via
+$protein->domain(123)->atoms.
+
+=head1 METHODS
+
+Remember that this class inherits all the methods from Chemistry::Mol. They
+won't be repeated here.
+
+=over 4
+
+=item Chemistry::MacroMol->new(name => value, ...)
+
+Create a new MacroMol object with the specified attributes. You can use the
+same attributes as for Chemistry::Mol->new.
 
 =cut
-
-our @EXPORT_OK = ();
-
 
 sub new {
     my $class = shift;
@@ -37,6 +54,11 @@ sub new {
     return $self;
 }
 
+=item $mol->add_domain($domain, ...)
+
+Add one or more Domain objects to the molecule. Returns the last domain added.
+
+=cut
 
 sub add_domain {
     my $self = shift;
@@ -47,6 +69,14 @@ sub add_domain {
     $_[-1];
 }
 
+
+=item $mol->new_domain(name => value, ...)
+
+Shorthand for $mol->add_domain(Chemistry::Domain->new(name => value, ...));
+It has the limitation that it doesn't let you create a subclass of 
+Chemistry::Domain.
+
+=cut
 
 sub new_domain {
     my $self = shift;
@@ -70,12 +100,13 @@ sub domains {
 }
 
 
-
 1;
 
-
+=back
 
 =head1 SEE ALSO
+
+L<Chemistry::Domain>, L<Chemistry::Mol>
 
 =head1 AUTHOR
 
