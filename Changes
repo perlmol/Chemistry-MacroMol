@@ -1,6 +1,5 @@
 Revision history for Perl extension Chemistry::MacroMol.
 
-0.01  Thu Sep 25 19:37:50 2003
-	- original version; created by h2xs 1.22 with options
-		-AXb5.6.1 Chemistry::MacroMol
+0.05  Thu Sep 25
+	- First release
 

@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use base qw(Chemistry::Mol Exporter);
 use Carp;
+our $VERSION = '0.05';
 
 =head1 NAME
 
