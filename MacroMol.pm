@@ -1,5 +1,5 @@
 package Chemistry::MacroMol;
-use 5.006001;
+use 5.006;
 use strict;
 use warnings;
 use base qw(Chemistry::Mol Exporter);
