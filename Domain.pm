@@ -28,10 +28,6 @@ Chemistry::Domain class inherits from Chemistry::Mol.
 
 our @EXPORT_OK = ();
 
-Chemistry::Obj::accessor('parent');
-# should add checking to ensure that parent is a Mol
-
-
 =head1 METHODS
 
 Note: the methods that are inherited from Chemistry::Mol are not repeated here.
@@ -55,6 +51,15 @@ sub new {
     return $self;
 }
 
+
+=item $domain->parent
+
+Returns the parent of the domain.
+
+=cut
+
+# should add checking to ensure that parent is a Mol
+Chemistry::Obj::accessor('parent');
 
 =item $domain->add_atom($atom, ...)
 
